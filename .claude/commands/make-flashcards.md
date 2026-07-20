@@ -58,10 +58,9 @@ Each card must be atomic:
 Each card must include:
 
 - stable id, such as `card001`
-- card type: `front-back` or `cloze`
-- front/back or cloze text
-- source references
-- tags
+- front
+- back
+- source when useful
 - difficulty
 
 ## Quality Rules
@@ -69,7 +68,9 @@ Each card must include:
 - Avoid broad cards such as "Explain all of chapter 2."
 - Avoid near-duplicate cards unless they test different retrieval angles.
 - Prefer plain language.
-- Mark unsupported or inferred cards in provenance instead of hiding uncertainty.
+- Keep the JSON simple enough for a future UI to read directly.
+- Mark unsupported or inferred cards in a plain `note` field instead of hiding
+  uncertainty.
 - Include cloze cards only when cloze deletion is genuinely useful.
 
 ## Completion Response
@@ -89,4 +90,3 @@ Report:
 - Do not overwrite older flashcard versions.
 - Do not invent unsupported card answers.
 - Do not edit reviewers or resources.
-

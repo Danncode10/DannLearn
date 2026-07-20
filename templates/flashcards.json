@@ -1,34 +1,19 @@
 {
-  "schema_version": "1.0",
-  "artifact_type": "flashcards",
+  "type": "flashcards",
   "subject": "<SubjectName>",
   "topic": "<topic-slug>",
   "version": "v001",
   "created_at": "<ISO timestamp>",
-  "sources": [],
-  "content": {
-    "title": "",
-    "cards": [
-      {
-        "id": "card001",
-        "card_type": "front-back",
-        "front": "",
-        "back": "",
-        "source_refs": [],
-        "tags": [],
-        "difficulty": "easy"
-      }
-    ],
-    "cloze_cards": []
-  },
-  "provenance": {
-    "generation_notes": "",
-    "unsupported_or_inferred_items": []
-  },
-  "quality_notes": {
-    "duplicates_checked": false,
-    "confidence": "",
-    "needs_review": []
-  }
+  "sources": [
+    "Subjects/<SubjectName>/resources/processed/<resource>.processed.md"
+  ],
+  "cards": [
+    {
+      "id": "card001",
+      "front": "",
+      "back": "",
+      "difficulty": "easy",
+      "source": ""
+    }
+  ]
 }
-

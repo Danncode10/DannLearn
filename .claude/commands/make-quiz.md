@@ -61,19 +61,18 @@ Create 15-25 questions unless the source is too small. Include a balanced mix:
 Each question must include:
 
 - stable id, such as `q001`
-- type
-- difficulty: `easy`, `medium`, or `hard`
-- prompt
+- question
+- choices, using an empty array for short-answer questions
 - answer
 - explanation
-- source references
-- tags
+- difficulty: `easy`, `medium`, or `hard`
+- source when useful
 
 ## Quality Rules
 
 - The quiz should test understanding, not trivia.
 - Every answer must be supportable from sources.
-- Include review targets for missed concepts.
+- Keep the JSON simple enough for a future UI to read directly.
 - If the source is weak, create fewer questions and mark source gaps.
 - Do not duplicate questions from prior quiz versions unless the repetition is
   intentional and valuable.
@@ -95,4 +94,3 @@ Report:
 - Do not overwrite older quiz versions.
 - Do not invent unsupported answers.
 - Do not edit reviewers or resources.
-

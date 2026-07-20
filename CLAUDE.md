@@ -31,7 +31,7 @@ make quizzes / flashcards -> check coverage and factual grounding
 6. **Quizzes need answer keys** - Every quiz question must include an answer and,
    where useful, a short explanation.
 7. **JSON is canonical** - Generated reviewers, quizzes, flashcards, and
-   practice sets should be written as structured JSON first. Markdown previews
+   practice sets should be written as simple JSON files first. Markdown previews
    are optional companions.
 8. **Subject content is local by default** - `Subjects/` usually belongs to the
    learner or project and should not be upstreamed unless explicitly requested.
@@ -73,18 +73,19 @@ practice-sets/<topic-slug>/practice-set.v001.json
 When regenerating or making another practice variant, create the next version
 instead of overwriting the previous one: `v002`, `v003`, and so on.
 
-Each JSON artifact should include:
+Each JSON artifact should stay practical and easy for a future UI to read.
+Usually include:
 
-- `schema_version`
-- `artifact_type`
+- `type`
 - `subject`
 - `topic`
 - `version`
 - `created_at`
 - `sources`
-- `content`
-- `provenance`
-- `quality_notes`
+- the main array, such as `questions`, `cards`, `sections`, or `items`
+
+Do not make the JSON feel like a database schema. The goal is a clean file that
+can be loaded directly later.
 
 ### Reviewers
 
@@ -107,6 +108,33 @@ Quizzes should include:
 - A mix of recall, application, and explanation questions.
 - Answer key and short explanations.
 - Clear marking when an answer depends on an assumption.
+
+Quiz JSON should be straightforward:
+
+```json
+{
+  "type": "quiz",
+  "subject": "Biology",
+  "topic": "chapter-1",
+  "version": "v001",
+  "sources": ["Subjects/Biology/resources/processed/chapter-1.processed.md"],
+  "questions": [
+    {
+      "id": "q001",
+      "question": "What is the main role of the cell membrane?",
+      "choices": [
+        "To store genetic information",
+        "To control what enters and leaves the cell",
+        "To make proteins",
+        "To produce energy"
+      ],
+      "answer": "To control what enters and leaves the cell",
+      "explanation": "The membrane works as a selective boundary.",
+      "difficulty": "easy"
+    }
+  ]
+}
+```
 
 ### Flashcards
 
