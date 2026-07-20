@@ -18,12 +18,17 @@ Subjects/
     reviewers/
     quizzes/
     flashcards/
+    practice-sets/
     notes/
     index.md
 ```
 
 Resources are the source of truth. Generated reviewers, quizzes, and flashcards
 should be grounded in those resources and include source provenance.
+
+Generated study artifacts are JSON-first so a future DannLearn UI can read them
+without scraping Markdown. Markdown previews may be created beside JSON files
+when they help with human review.
 
 ## Repository Areas
 
@@ -38,6 +43,4 @@ should be grounded in those resources and include source provenance.
 
 ## Current Status
 
-This repo currently contains the foundation only. Slash commands are planned but
-not yet created.
-
+This repo contains the foundation and the first approved command set.

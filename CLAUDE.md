@@ -30,7 +30,10 @@ make quizzes / flashcards -> check coverage and factual grounding
    or distinction per card.
 6. **Quizzes need answer keys** - Every quiz question must include an answer and,
    where useful, a short explanation.
-7. **Subject content is local by default** - `Subjects/` usually belongs to the
+7. **JSON is canonical** - Generated reviewers, quizzes, flashcards, and
+   practice sets should be written as structured JSON first. Markdown previews
+   are optional companions.
+8. **Subject content is local by default** - `Subjects/` usually belongs to the
    learner or project and should not be upstreamed unless explicitly requested.
 
 ## Project Structure
@@ -44,6 +47,7 @@ Subjects/
     reviewers/      # human-studyable markdown reviewers
     quizzes/        # quiz markdown with answers and explanations
     flashcards/     # spaced-repetition-ready markdown or export formats
+    practice-sets/   # mixed practice sessions drawn from quizzes/cards/reviewers
     notes/          # loose notes, study plans, and reflections
     index.md        # subject map and status
 
@@ -55,15 +59,43 @@ docs/dannlearn_docs/ # methodology and maintainer docs
 
 ## Artifact Standards
 
+### Naming And Versioning
+
+Generated artifact folders should use readable kebab-case slugs:
+
+```text
+reviewers/<topic-slug>/reviewer.v001.json
+quizzes/<topic-slug>/quiz.v001.json
+flashcards/<topic-slug>/flashcards.v001.json
+practice-sets/<topic-slug>/practice-set.v001.json
+```
+
+When regenerating or making another practice variant, create the next version
+instead of overwriting the previous one: `v002`, `v003`, and so on.
+
+Each JSON artifact should include:
+
+- `schema_version`
+- `artifact_type`
+- `subject`
+- `topic`
+- `version`
+- `created_at`
+- `sources`
+- `content`
+- `provenance`
+- `quality_notes`
+
 ### Reviewers
 
-Reviewers should be easy to study from. They should include:
+Reviewers should be easy to study from. JSON reviewer content should include:
 
 - Title, scope, and source provenance.
 - Topic sections in a sensible learning order.
 - Key concepts and definitions.
 - Examples, contrasts, formulas, or processes where applicable.
 - Quick checks or recall prompts.
+- Optional quote notes when the command is run with `-quote`.
 - A final gap list when the source material is incomplete.
 
 ### Quizzes
@@ -85,6 +117,18 @@ Flashcards should include:
 - Optional cloze cards for definitions, formulas, and ordered steps.
 - No duplicate or near-duplicate cards unless they test meaningfully different
   angles.
+
+### Processed Resources
+
+Processed resources may be Markdown because they are intermediate human-readable
+notes. When processing PDFs, slides, docs, images, or graphs:
+
+- Extract visible text when possible.
+- Preserve tables as Markdown tables when useful.
+- Describe images, charts, and diagrams in text.
+- Use Mermaid only when the visual structure can be represented accurately and
+  safely in GitHub/VS Code Markdown.
+- Mark low-confidence visual interpretation instead of pretending certainty.
 
 ## Upstream Model
 
@@ -110,8 +154,7 @@ instead of blindly merging or overwriting project work.
 
 ## Command Policy
 
-No slash commands have been created yet. When they are added, each command should
-declare:
+Each command should declare:
 
 - Whether it is report-only or allowed to edit files.
 - Exact preflight checks.
@@ -125,4 +168,3 @@ If you do not know which command fits a task, future DannLearn should support an
 
 Codex should read `AGENTS.md`, then this file, then `.codex/context/dannlearn.md`
 before doing project work.
-

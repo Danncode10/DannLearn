@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "practice-set",
+  "subject": "<SubjectName>",
+  "topic": "<topic-slug>",
+  "version": "v001",
+  "created_at": "<ISO timestamp>",
+  "sources": [],
+  "content": {
+    "title": "",
+    "purpose": "",
+    "items": [
+      {
+        "id": "p001",
+        "mode": "recall",
+        "prompt": "",
+        "expected_answer": "",
+        "explanation": "",
+        "source_refs": [],
+        "tags": [],
+        "difficulty": "easy"
+      }
+    ]
+  },
+  "provenance": {
+    "generation_notes": "",
+    "unsupported_or_inferred_items": []
+  },
+  "quality_notes": {
+    "mix": "",
+    "confidence": "",
+    "needs_review": []
+  }
+}
+

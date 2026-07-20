@@ -13,10 +13,10 @@ Subjects/
     reviewers/
     quizzes/
     flashcards/
+    practice-sets/
     notes/
     index.md
 ```
 
 `Subjects/` is local content by default. Do not upstream private resources,
 personal notes, or generated study material unless the user explicitly asks.
-

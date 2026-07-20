@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "quiz",
+  "subject": "<SubjectName>",
+  "topic": "<topic-slug>",
+  "version": "v001",
+  "created_at": "<ISO timestamp>",
+  "sources": [],
+  "content": {
+    "title": "",
+    "purpose": "",
+    "instructions": [],
+    "questions": [
+      {
+        "id": "q001",
+        "type": "short-answer",
+        "difficulty": "easy",
+        "prompt": "",
+        "answer": "",
+        "explanation": "",
+        "source_refs": [],
+        "tags": []
+      }
+    ],
+    "review_targets": []
+  },
+  "provenance": {
+    "generation_notes": "",
+    "unsupported_or_inferred_items": []
+  },
+  "quality_notes": {
+    "coverage": "",
+    "confidence": "",
+    "needs_review": []
+  }
+}
+

@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "reviewer",
+  "subject": "<SubjectName>",
+  "topic": "<topic-slug>",
+  "version": "v001",
+  "created_at": "<ISO timestamp>",
+  "sources": [
+    {
+      "path": "Subjects/<SubjectName>/resources/processed/<resource>.md",
+      "type": "processed-resource",
+      "notes": ""
+    }
+  ],
+  "content": {
+    "title": "",
+    "scope": "",
+    "study_order": [],
+    "sections": [
+      {
+        "heading": "",
+        "summary": "",
+        "key_concepts": [
+          {
+            "term": "",
+            "plain_meaning": "",
+            "what_it_is_not": "",
+            "example": "",
+            "source_refs": []
+          }
+        ],
+        "quick_checks": []
+      }
+    ],
+    "quote_notes": [],
+    "common_confusions": [],
+    "recall_prompts": [],
+    "source_gaps": []
+  },
+  "provenance": {
+    "generation_notes": "",
+    "unsupported_or_inferred_items": []
+  },
+  "quality_notes": {
+    "coverage": "",
+    "confidence": "",
+    "needs_review": []
+  }
+}
+
