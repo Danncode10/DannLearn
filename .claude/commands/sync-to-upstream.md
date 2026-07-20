@@ -41,6 +41,8 @@ git fetch upstream --quiet
 .codex/
 templates/
 docs/dannlearn_docs/
+install.sh
+guide.sh
 README.md
 CLAUDE.md
 AGENTS.md
@@ -121,4 +123,3 @@ Patch folder:
 - Do not include generated quizzes/flashcards/reviewers by default.
 - Do not push or open a PR unless the user explicitly asks.
 - Stop on dirty working tree.
-

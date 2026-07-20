@@ -1,16 +1,42 @@
 # DannLearn
 
-DannLearn is a starter repo for making your own AI-assisted study workspace.
+**The AI-assisted study workspace starter.** Turn your PDFs, slides, docs, and
+notes into reviewers, quizzes, flashcards, and practice sets using repo-native
+Markdown and JSON files.
 
-The idea is simple:
+> Built for personal learning repos that can still sync improvements back to the
+> DannLearn starter.
 
-1. Clone DannLearn.
-2. Make your own learning repo from it.
-3. Put your private resources in your own repo, not in DannLearn upstream.
-4. Use the commands in `.claude/commands/` to generate reviewers, quizzes,
-   flashcards, and practice sets.
-5. Contribute improvements to the starter itself when they are useful for
-   everyone.
+---
+
+## Quick Start
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Danncode10/DannLearn/main/install.sh | bash
+```
+
+That's it. The installer:
+
+1. Asks for your learning repo name.
+2. Clones DannLearn into a new folder.
+3. Renames the original remote to `upstream`.
+4. Optionally adds your own GitHub repo as `origin`.
+5. Writes `dannlearn.json` with the starter commit anchor.
+6. Leaves the repo ready for `/update-dannlearn`, `/sync-upstream`, and
+   `/sync-to-upstream`.
+
+After install:
+
+```bash
+cd my-dannlearn
+./guide.sh
+```
+
+Then open Claude Code or Codex and run:
+
+```text
+/help-dannlearn
+```
 
 DannLearn is not a database app. It stores learning content as folders,
 Markdown, and JSON files.
@@ -60,31 +86,9 @@ Reusable starter files live outside `Subjects/`:
 | `docs/dannlearn_docs/` | Maintainer and methodology docs. |
 | `dannlearn.json` | Future upstream sync/version anchor. |
 
-## How To Use This Starter
+## After Install - Make It Yours
 
-### 1. Clone DannLearn
-
-```bash
-git clone https://github.com/Danncode10/DannLearn.git MyLearningRepo
-cd MyLearningRepo
-```
-
-### 2. Make It Your Own Repo
-
-Create your own GitHub repo, then point `origin` to your repo.
-
-```bash
-git remote rename origin upstream
-git remote add origin <your-github-repo-url>
-git push -u origin main
-```
-
-Recommended meaning:
-
-- `upstream` = the original DannLearn starter
-- `origin` = your personal learning repo
-
-### 3. Add Subjects
+### 1. Add Subjects
 
 Use the command:
 
@@ -105,7 +109,7 @@ Example resources:
 - `notes.docx`
 - `syllabus.md`
 
-### 4. Process Resources
+### 2. Process Resources
 
 Use:
 
@@ -123,7 +127,7 @@ If the resource has images, charts, or graphs, the command should extract visibl
 text, describe the visual, and only use Mermaid when the diagram can be
 represented clearly.
 
-### 5. Generate Study Artifacts
+### 3. Generate Study Artifacts
 
 Examples:
 
@@ -193,6 +197,13 @@ That is the heart of it: simple JSON arrays that can become UI later.
 
 DannLearn is meant to be reused.
 
+The installer sets this up automatically:
+
+```text
+upstream -> Danncode10/DannLearn
+origin   -> your own learning repo, if you provided one
+```
+
 Your personal learning repo should usually keep these local:
 
 - `Subjects/`
@@ -228,6 +239,33 @@ The upstream commands are:
 They are inspired by DannFlow's selective sync flow. The important rule is:
 starter files can sync, private subject content should stay local unless you
 explicitly choose otherwise.
+
+### Get New Starter Updates
+
+```text
+/update-dannlearn
+/sync-upstream
+```
+
+Use this when DannLearn adds new commands, templates, docs, or scripts and you
+want them in your own learning repo.
+
+### Contribute Back To DannLearn
+
+```text
+/sync-to-upstream
+```
+
+Use this when you improved generic starter files, such as:
+
+- `.claude/commands/`
+- `templates/`
+- `docs/dannlearn_docs/`
+- `install.sh`
+- `guide.sh`
+
+Do not upstream private subject resources unless you intentionally want them
+public.
 
 ## Installed Commands
 

@@ -8,6 +8,15 @@ DannLearn should support personal projects while remaining open-source friendly.
 Future sync commands should update this file only when selected upstream changes
 actually land.
 
+The recommended way to create a new personal learning repo is the installer:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Danncode10/DannLearn/main/install.sh | bash
+```
+
+The installer clones DannLearn, renames the starter remote to `upstream`, asks
+for an optional personal `origin`, and writes `dannlearn.json`.
+
 ## Upstreamable By Default
 
 - `.claude/`
@@ -15,6 +24,8 @@ actually land.
 - `templates/`
 - `docs/dannlearn_docs/`
 - Generic scripts or automation added later
+- `install.sh`
+- `guide.sh`
 
 ## Local By Default
 

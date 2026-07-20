@@ -49,6 +49,8 @@ Last synced from DannLearn: <dannlearn_commit> on <synced_at>
 .codex/
 templates/
 docs/dannlearn_docs/
+install.sh
+guide.sh
 README.md
 CLAUDE.md
 AGENTS.md
@@ -124,4 +126,3 @@ Report:
 - Never touch private subject content unless the user explicitly names a file and confirms.
 - Never overwrite modified files without showing a diff first.
 - Stop on dirty working tree.
-

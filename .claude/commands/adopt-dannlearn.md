@@ -55,6 +55,8 @@ git rev-parse upstream/main
 .codex/
 templates/
 docs/dannlearn_docs/
+install.sh
+guide.sh
 README.md
 CLAUDE.md
 AGENTS.md
@@ -114,4 +116,3 @@ Report:
 - Do not overwrite existing files without showing the diff and asking.
 - Do not run broad `git checkout upstream/main -- .`.
 - Stop on dirty working tree.
-

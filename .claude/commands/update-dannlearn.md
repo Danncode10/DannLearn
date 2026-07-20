@@ -57,6 +57,8 @@ git log <dannlearn_commit>..upstream/main --oneline --no-merges
 .codex/
 templates/
 docs/dannlearn_docs/
+install.sh
+guide.sh
 README.md
 CLAUDE.md
 AGENTS.md
@@ -89,4 +91,3 @@ Run /sync-upstream to select files, or stop here.
 - Do not update `dannlearn.json` unless selected upstream files are actually applied.
 - Do not touch `Subjects/<Subject>/` content.
 - Stop on dirty working tree.
-
