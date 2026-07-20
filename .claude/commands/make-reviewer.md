@@ -36,8 +36,8 @@ Biology cell membrane -quote "The membrane is like a selective border, not a wal
 "Computer Networks" tcp-ip
 ```
 
-If `-quote` is present, preserve the quote in `content.quote_notes` and use it
-as a learner-friendly note where relevant. Lightly clean grammar only when it
+If `-quote` is present, preserve the quote in `quote_notes` and use it as a
+learner-friendly note where relevant. Lightly clean grammar only when it
 improves clarity. Do not change the learner's meaning.
 
 ## Procedure
