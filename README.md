@@ -35,7 +35,7 @@ when they help with human review.
 | Path | Purpose |
 |---|---|
 | `Subjects/` | User/project-specific study content. Not upstream by default. |
-| `templates/` | Reusable markdown shapes for subjects, reviewers, quizzes, and flashcards. |
+| `templates/` | Reusable Markdown and JSON shapes for subjects, reviewers, quizzes, flashcards, and practice sets. |
 | `docs/dannlearn_docs/` | Methodology and maintainer docs for DannLearn. |
 | `.claude/` | Claude Code project context, future agents, and future commands. |
 | `.codex/` | Codex compatibility notes for working with DannLearn. |

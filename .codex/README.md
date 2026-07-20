@@ -12,6 +12,5 @@ Codex should read these files before project work:
 
 ## Commands
 
-No Codex command bridge is installed yet because DannLearn slash commands have
-not been approved or created.
-
+No Codex slash-command bridge is installed yet. The approved command prompts
+live in `.claude/commands/` and can be read/executed directly by Codex.

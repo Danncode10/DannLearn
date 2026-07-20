@@ -18,6 +18,9 @@ plain Markdown so they can be reviewed, edited, and eventually upstreamed.
 | `/reviewer-update <subject> [reviewer]` | Creates an updated reviewer version. |
 | `/reviewer-check <subject> [reviewer]` | Report-only reviewer QA. |
 | `/reviewer-polish <subject> [reviewer]` | Creates a clearer polished reviewer version. |
+| `/make-quiz <subject> [topic]` | Creates a new versioned quiz JSON artifact. |
+| `/make-flashcards <subject> [topic]` | Creates a new versioned flashcard JSON artifact. |
+| `/practice-set <subject> [topic]` | Creates a mixed practice-set JSON artifact. |
 
 More approved commands live in this folder as they are added.
 
