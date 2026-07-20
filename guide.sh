@@ -77,7 +77,12 @@ show_status() {
 
   echo -e "${BOLD}Subjects${NC}"
   if [ -d Subjects ]; then
-    find Subjects -maxdepth 1 -mindepth 1 -type d | sort | sed 's#^#- #'
+    subjects=$(find Subjects -maxdepth 1 -mindepth 1 -type d | sort)
+    if [ -n "$subjects" ]; then
+      printf '%s\n' "$subjects" | sed 's#^#- #'
+    else
+      echo "No subject folders yet. Run /new-subject <name>."
+    fi
   else
     echo "No Subjects folder found."
   fi
@@ -119,4 +124,3 @@ case "${1:-help}" in
     exit 1
     ;;
 esac
-
