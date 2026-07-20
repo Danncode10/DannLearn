@@ -216,8 +216,18 @@ Private study content -> keep in your repo
 Starter improvements  -> PR back to DannLearn
 ```
 
-Future commands like `/sync-upstream`, `/sync-to-upstream`, and
-`/update-dannlearn` should make that easier, inspired by DannFlow.
+The upstream commands are:
+
+```text
+/adopt-dannlearn
+/update-dannlearn
+/sync-upstream
+/sync-to-upstream
+```
+
+They are inspired by DannFlow's selective sync flow. The important rule is:
+starter files can sync, private subject content should stay local unless you
+explicitly choose otherwise.
 
 ## Installed Commands
 
@@ -236,6 +246,10 @@ Future commands like `/sync-upstream`, `/sync-to-upstream`, and
 /make-quiz <subject> [topic]
 /make-flashcards <subject> [topic]
 /practice-set <subject> [topic]
+/adopt-dannlearn [--force]
+/update-dannlearn [--init]
+/sync-upstream [path]
+/sync-to-upstream [path|--dry-run]
 ```
 
 Run:
@@ -245,4 +259,3 @@ Run:
 ```
 
 to see the command catalog.
-

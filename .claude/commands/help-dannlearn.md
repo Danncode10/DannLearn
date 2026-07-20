@@ -85,6 +85,15 @@ command prompts are the source of truth.
 | `/make-flashcards <subject> [topic]` | Creates versioned atomic flashcard JSON from resources/reviewers. |
 | `/practice-set <subject> [topic]` | Creates a mixed practice set with recall, quiz, flashcard, and explain-back items. |
 
+### Open Source & Upstream
+
+| Command | Says |
+|---|---|
+| `/adopt-dannlearn [--force]` | Bootstraps an existing repo into DannLearn conventions. |
+| `/update-dannlearn [--init]` | Smart entry point for checking and pulling latest DannLearn starter updates. |
+| `/sync-upstream [path]` | Pulls selected starter updates into a project without touching subject content. |
+| `/sync-to-upstream [path\|--dry-run]` | Prepares generic command/docs/template improvements for an upstream PR. |
+
 ## Command Graph
 
 ```mermaid
@@ -113,6 +122,12 @@ graph TD
   MR --> MF
   MQ --> PS
   MF --> PS
+
+  Upstream["Open Source & Upstream"] --> AD["/adopt-dannlearn"]
+  Upstream --> UD["/update-dannlearn"]
+  Upstream --> SU["/sync-upstream"]
+  Upstream --> STU["/sync-to-upstream"]
+  UD --> SU
 ```
 
 ## Notes
@@ -120,5 +135,5 @@ graph TD
 - `Subjects/` is local/private by default.
 - Generated reviewers, quizzes, flashcards, and practice sets are JSON-first.
 - Versioned artifacts should create `v001`, `v002`, `v003`, and so on instead of overwriting.
+- `Subjects/` content is not upstreamed by default.
 - `/help-dannlearn`, `/list-subjects`, `/subject-status`, and `/reviewer-check` are report-only unless their command files explicitly say otherwise.
-

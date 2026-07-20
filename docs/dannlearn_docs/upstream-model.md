@@ -28,3 +28,13 @@ actually land.
 Prefer selective file-level syncs. Avoid merges that can overwrite learner or
 project-specific content.
 
+## Commands
+
+| Command | Purpose |
+|---|---|
+| `/adopt-dannlearn` | Bootstraps an existing repo into DannLearn conventions. |
+| `/update-dannlearn` | Checks the current anchor and latest upstream starter changes. |
+| `/sync-upstream` | Pulls selected starter updates into a project. |
+| `/sync-to-upstream` | Prepares generic local improvements for an upstream PR. |
+
+These commands should not include `Subjects/<Subject>/` content by default.

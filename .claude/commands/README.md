@@ -21,6 +21,10 @@ plain Markdown so they can be reviewed, edited, and eventually upstreamed.
 | `/make-quiz <subject> [topic]` | Creates a new versioned quiz JSON artifact. |
 | `/make-flashcards <subject> [topic]` | Creates a new versioned flashcard JSON artifact. |
 | `/practice-set <subject> [topic]` | Creates a mixed practice-set JSON artifact. |
+| `/adopt-dannlearn [--force]` | Bootstraps an existing repo into DannLearn conventions. |
+| `/update-dannlearn [--init]` | Checks for latest DannLearn starter updates. |
+| `/sync-upstream [path]` | Pulls selected starter updates into a project. |
+| `/sync-to-upstream [path\|--dry-run]` | Prepares generic local improvements for upstream contribution. |
 
 More approved commands live in this folder as they are added.
 
