@@ -54,6 +54,5 @@ Report:
 ## Safety Rules
 
 - Never overwrite the original reviewer.
-- Do not remove provenance.
+- Do not remove source references.
 - Do not polish uncertainty into false confidence.
-

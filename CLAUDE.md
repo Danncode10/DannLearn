@@ -53,7 +53,7 @@ Subjects/
 
 templates/          # reusable artifact templates
 docs/dannlearn_docs/ # methodology and maintainer docs
-.claude/            # Claude context, future commands, future agents
+.claude/            # Claude commands and future agents
 .codex/             # Codex compatibility layer
 ```
 

@@ -38,8 +38,8 @@ Subjects/<Subject>/reviewers/<topic-slug>/reviewer.vNNN.json
    - sections
    - key concepts
    - source gaps
-   - quality notes
-   - provenance
+   - quote notes
+   - simple source fields
 
 11. Do not mutate older versions.
 
@@ -60,4 +60,3 @@ Report:
 - Never overwrite older reviewer versions.
 - Do not delete stale versions.
 - Do not invent facts to fill gaps.
-

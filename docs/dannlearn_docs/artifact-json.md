@@ -114,3 +114,63 @@ If a specific item needs more detail, add `source` to that question/card:
 Keep it practical. The goal is not a perfect schema. The goal is a clean file
 that humans and a future UI can both understand.
 
+## Simple Reviewer Shape
+
+```json
+{
+  "type": "reviewer",
+  "subject": "Biology",
+  "topic": "chapter-1",
+  "version": "v001",
+  "sources": [
+    "Subjects/Biology/resources/processed/chapter-1.processed.md"
+  ],
+  "title": "Chapter 1 Reviewer",
+  "sections": [
+    {
+      "heading": "Cell Membrane",
+      "summary": "The membrane controls what enters and leaves the cell.",
+      "key_concepts": [
+        {
+          "term": "Selective permeability",
+          "meaning": "Only some substances can pass through.",
+          "example": "Small molecules may pass more easily than large ones.",
+          "source": "Subjects/Biology/resources/processed/chapter-1.processed.md"
+        }
+      ],
+      "quick_checks": [
+        {
+          "question": "What does selective permeability mean?",
+          "answer": "Only some substances can pass through."
+        }
+      ]
+    }
+  ],
+  "quote_notes": []
+}
+```
+
+## Simple Practice Set Shape
+
+```json
+{
+  "type": "practice-set",
+  "subject": "Biology",
+  "topic": "chapter-1",
+  "version": "v001",
+  "sources": [
+    "Subjects/Biology/quizzes/chapter-1/quiz.v001.json",
+    "Subjects/Biology/flashcards/chapter-1/flashcards.v001.json"
+  ],
+  "items": [
+    {
+      "id": "p001",
+      "mode": "multiple-choice",
+      "question": "What is the main role of the cell membrane?",
+      "answer": "To control what enters and leaves the cell",
+      "explanation": "This checks the big idea from the reviewer.",
+      "difficulty": "easy"
+    }
+  ]
+}
+```

@@ -64,12 +64,13 @@ Each item must include:
 
 - stable id, such as `p001`
 - mode
-- prompt
-- expected answer
+- question
+- answer
 - explanation
-- source references
-- tags
 - difficulty
+- source when useful
+
+Keep the JSON simple enough for a future UI to read directly.
 
 ## Mix Rules
 
@@ -96,4 +97,3 @@ Report:
 - Do not overwrite older practice sets.
 - Do not invent unsupported answers.
 - Do not edit quizzes, flashcards, reviewers, or resources.
-

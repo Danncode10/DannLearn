@@ -88,30 +88,30 @@ the JSON file is canonical.
 
 Use `templates/reviewer.json` as the shape. Include:
 
-- `schema_version`
-- `artifact_type: "reviewer"`
+- `type: "reviewer"`
 - `subject`
 - `topic`
 - `version`
 - `created_at`
 - `sources`
-- `content.title`
-- `content.scope`
-- `content.study_order`
-- `content.sections`
-- `content.quote_notes`
-- `content.common_confusions`
-- `content.recall_prompts`
-- `content.source_gaps`
-- `provenance`
-- `quality_notes`
+- `title`
+- `scope`
+- `study_order`
+- `sections`
+- `quote_notes`
+- `common_confusions`
+- `recall_prompts`
+- `source_gaps`
+
+Keep the JSON simple enough for a future UI to read directly. Do not make it
+feel like a database schema.
 
 Each major concept should include:
 
 - plain meaning
 - what it is not, when useful
 - example or application
-- source references
+- source
 - quick check
 
 ## Teaching And Study Style
@@ -161,4 +161,3 @@ Report:
 - Do not overwrite existing reviewer versions.
 - Do not delete or edit resources.
 - Treat raw resources and notes as private/local.
-

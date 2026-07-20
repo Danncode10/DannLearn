@@ -1,50 +1,49 @@
 {
-  "schema_version": "1.0",
-  "artifact_type": "reviewer",
+  "type": "reviewer",
   "subject": "<SubjectName>",
   "topic": "<topic-slug>",
   "version": "v001",
   "created_at": "<ISO timestamp>",
   "sources": [
+    "Subjects/<SubjectName>/resources/processed/<resource>.processed.md"
+  ],
+  "title": "",
+  "scope": "",
+  "study_order": [],
+  "sections": [
     {
-      "path": "Subjects/<SubjectName>/resources/processed/<resource>.md",
-      "type": "processed-resource",
-      "notes": ""
+      "heading": "",
+      "summary": "",
+      "key_concepts": [
+        {
+          "term": "",
+          "meaning": "",
+          "example": "",
+          "source": ""
+        }
+      ],
+      "quick_checks": [
+        {
+          "question": "",
+          "answer": ""
+        }
+      ]
     }
   ],
-  "content": {
-    "title": "",
-    "scope": "",
-    "study_order": [],
-    "sections": [
-      {
-        "heading": "",
-        "summary": "",
-        "key_concepts": [
-          {
-            "term": "",
-            "plain_meaning": "",
-            "what_it_is_not": "",
-            "example": "",
-            "source_refs": []
-          }
-        ],
-        "quick_checks": []
-      }
-    ],
-    "quote_notes": [],
-    "common_confusions": [],
-    "recall_prompts": [],
-    "source_gaps": []
-  },
-  "provenance": {
-    "generation_notes": "",
-    "unsupported_or_inferred_items": []
-  },
-  "quality_notes": {
-    "coverage": "",
-    "confidence": "",
-    "needs_review": []
-  }
+  "quote_notes": [
+    {
+      "quote": "",
+      "where_it_fits": "",
+      "note": ""
+    }
+  ],
+  "common_confusions": [
+    {
+      "confusion": "",
+      "clarification": ""
+    }
+  ],
+  "recall_prompts": [],
+  "source_gaps": []
 }
 
