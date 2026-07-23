@@ -30,9 +30,9 @@ make quizzes / flashcards -> check coverage and factual grounding
    or distinction per card.
 6. **Quizzes need answer keys** - Every quiz question must include an answer and,
    where useful, a short explanation.
-7. **JSON is canonical** - Generated reviewers, quizzes, flashcards, and
-   practice sets should be written as simple JSON files first. Markdown previews
-   are optional companions.
+7. **JSON/Markdown output split** - Generated quizzes, flashcards, and
+   practice sets should be written as simple JSON files first (with optional Markdown
+   previews). Reviewers must be written directly as versioned Markdown files.
 8. **Subject content is local by default** - `Subjects/` usually belongs to the
    learner or project and should not be upstreamed unless explicitly requested.
 
@@ -64,7 +64,7 @@ docs/dannlearn_docs/ # methodology and maintainer docs
 Generated artifact folders should use readable kebab-case slugs:
 
 ```text
-reviewers/<topic-slug>/reviewer.v001.json
+reviewers/<topic-slug>/reviewer.v001.md
 quizzes/<topic-slug>/quiz.v001.json
 flashcards/<topic-slug>/flashcards.v001.json
 practice-sets/<topic-slug>/practice-set.v001.json
@@ -89,7 +89,7 @@ can be loaded directly later.
 
 ### Reviewers
 
-Reviewers should be easy to study from. JSON reviewer content should include:
+Reviewers should be easy to study from. Markdown reviewer content should include:
 
 - Title, scope, and source provenance.
 - Topic sections in a sensible learning order.

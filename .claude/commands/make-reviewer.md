@@ -1,5 +1,5 @@
 ---
-description: Creates a JSON-first reviewer from subject resources, with optional -quote notes and versioned naming.
+description: Creates a Markdown-first reviewer from subject resources, with optional -quote notes and versioned naming.
 argument-hint: <subject> [topic-or-resource] [-quote "..."]
 ---
 
@@ -65,54 +65,27 @@ improves clarity. Do not change the learner's meaning.
 Subjects/<Subject>/reviewers/<topic-slug>/
 ```
 
-10. Create the next versioned JSON file:
+10. Create the next versioned Markdown file:
 
 ```text
-reviewer.v001.json
-reviewer.v002.json
-reviewer.v003.json
+reviewer.v001.md
+reviewer.v002.md
+reviewer.v003.md
 ```
 
 Never overwrite an existing version.
 
-11. Optionally create a Markdown preview beside it:
+## Reviewer Markdown Requirements
 
-```text
-reviewer.v001.md
-```
+Use `templates/reviewer.md` as the shape. Include:
 
-Create the Markdown preview when it helps the user read/review the artifact, but
-the JSON file is canonical.
-
-## Reviewer JSON Requirements
-
-Use `templates/reviewer.json` as the shape. Include:
-
-- `type: "reviewer"`
-- `subject`
-- `topic`
-- `version`
-- `created_at`
-- `sources`
-- `title`
-- `scope`
-- `study_order`
-- `sections`
-- `quote_notes`
-- `common_confusions`
-- `recall_prompts`
-- `source_gaps`
-
-Keep the JSON simple enough for a future UI to read directly. Do not make it
-feel like a database schema.
-
-Each major concept should include:
-
-- plain meaning
-- what it is not, when useful
-- example or application
-- source
-- quick check
+- Title (h1)
+- Scope (subject, topic, sources)
+- Study Order
+- Key Concepts (for each concept: definition, why it matters, example, quick check)
+- Common Confusions (table format)
+- Recall Prompts
+- Source Gaps
 
 ## Teaching And Study Style
 
@@ -133,7 +106,7 @@ Requirements:
 
 ## Mermaid Verification Loop
 
-If the reviewer Markdown preview or JSON strings include Mermaid:
+If the reviewer Markdown includes Mermaid:
 
 1. Check every Mermaid block for GitHub/VS Code-safe syntax.
 2. Prefer `flowchart LR`, `flowchart TD`, or `sequenceDiagram`.
@@ -149,8 +122,7 @@ Report:
 - subject
 - topic slug
 - sources used
-- reviewer JSON path
-- Markdown preview path, if created
+- reviewer Markdown path
 - whether `-quote` was included
 - assumptions and source gaps
 - suggested next commands: `/make-quiz` and `/make-flashcards`
