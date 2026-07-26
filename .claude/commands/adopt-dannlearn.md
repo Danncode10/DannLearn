@@ -42,13 +42,24 @@ git remote get-url upstream || git remote add upstream https://github.com/Dannco
 git fetch upstream --quiet
 ```
 
-6. Get the upstream commit:
+6. Compare the remotes:
+
+```bash
+git remote get-url origin
+git remote get-url upstream
+```
+
+   Stop if `origin` and `upstream` resolve to the same repository. A
+   personal learning repository must have a distinct origin before it adopts
+   DannLearn.
+
+7. Get the upstream commit:
 
 ```bash
 git rev-parse upstream/main
 ```
 
-7. Copy only starter-owned paths from upstream when they are missing:
+8. Copy only starter-owned paths from upstream when they are missing:
 
 ```text
 .claude/
@@ -63,8 +74,8 @@ AGENTS.md
 Subjects/README.md
 ```
 
-8. Never overwrite without showing the diff first.
-9. Never copy or replace:
+9. Never overwrite without showing the diff first.
+10. Never copy or replace:
 
 ```text
 Subjects/<Subject>/
@@ -77,7 +88,7 @@ Subjects/**/notes/
 .env*
 ```
 
-10. Create `dannlearn.json`:
+11. Create `dannlearn.json`:
 
 ```json
 {
@@ -89,8 +100,8 @@ Subjects/**/notes/
 }
 ```
 
-11. Create `Subjects/` and `Subjects/README.md` if missing.
-12. Commit only adoption files if the user allowed auto-commit:
+12. Create `Subjects/` and `Subjects/README.md` if missing.
+13. Commit only adoption files if the user allowed auto-commit:
 
 ```text
 chore: adopt DannLearn conventions

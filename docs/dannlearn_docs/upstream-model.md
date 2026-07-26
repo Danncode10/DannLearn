@@ -46,6 +46,6 @@ project-specific content.
 | `/adopt-dannlearn` | Bootstraps an existing repo into DannLearn conventions. |
 | `/update-dannlearn` | Checks the current anchor and latest upstream starter changes. |
 | `/sync-upstream` | Pulls selected starter updates into a project. |
-| `/sync-to-upstream` | Prepares generic local improvements for an upstream PR. |
+| `/sync-to-upstream` | Classifies generic local improvements, refreshes command help when needed, and opens a draft upstream PR. |
 
 These commands should not include `Subjects/<Subject>/` content by default.

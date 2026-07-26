@@ -20,9 +20,10 @@ That's it. The installer:
 1. Asks for your learning repo name.
 2. Clones DannLearn into a new folder.
 3. Renames the original remote to `upstream`.
-4. Optionally adds your own GitHub repo as `origin`.
-5. Writes `dannlearn.json` with the starter commit anchor.
-6. Leaves the repo ready for `/update-dannlearn`, `/sync-upstream`, and
+4. Creates or connects a separate **private** learning repository as `origin`.
+5. Pushes the workspace to that private repository.
+6. Writes `dannlearn.json` with the starter commit anchor.
+7. Leaves the repo ready for `/update-dannlearn`, `/sync-upstream`, and
    `/sync-to-upstream`.
 
 After install:
@@ -39,7 +40,8 @@ Then open Claude Code or Codex and run:
 ```
 
 DannLearn is not a database app. It stores learning content as folders,
-Markdown, and JSON files.
+Markdown, and JSON files. Your personal repository is where `Subjects/` and
+private resources belong.
 
 ## Who This Is For
 
@@ -67,7 +69,7 @@ Subjects/
     resources/
       raw/          # PDFs, docs, slides, text, or Markdown you add manually
       processed/    # cleaned Markdown notes generated from raw resources
-    reviewers/      # JSON reviewer files, optionally with Markdown previews
+    reviewers/      # versioned Markdown reviewers
     quizzes/        # versioned quiz JSON files
     flashcards/     # versioned flashcard JSON files
     practice-sets/  # mixed practice sessions
@@ -85,6 +87,40 @@ Reusable starter files live outside `Subjects/`:
 | `templates/` | Starter JSON and Markdown templates. |
 | `docs/dannlearn_docs/` | Maintainer and methodology docs. |
 | `dannlearn.json` | Future upstream sync/version anchor. |
+
+## Personal Repository and Upstream
+
+DannLearn uses two remotes:
+
+```text
+origin   -> your private learning repository
+upstream -> https://github.com/Danncode10/DannLearn.git
+```
+
+Do not use the public DannLearn repository as `origin`. Add subjects, PDFs,
+processed notes, and generated artifacts only after a distinct private origin
+exists.
+
+If GitHub CLI is authenticated, the installer offers to create the private
+repository automatically. To do it manually:
+
+```bash
+gh repo create my-dannlearn --private --source=. --remote=origin
+git push -u origin main
+```
+
+Without GitHub CLI, create an empty private repository in GitHub, then run:
+
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/my-dannlearn.git
+git push -u origin main
+```
+
+Verify the setup anytime with:
+
+```bash
+./guide.sh upstream
+```
 
 ## After Install - Make It Yours
 
@@ -150,9 +186,11 @@ Subjects/Biology/quizzes/chapter-1/quiz.v003.json
 This is useful later for a UI because it can show many quiz versions for the
 same topic.
 
-## Why JSON?
+## Artifact Formats
 
-JSON is used because it is easy for a future UI to read.
+Reviewers are versioned Markdown files because they are designed for reading and
+studying. Quizzes, flashcards, and practice sets use JSON because those
+artifacts are easy for a future UI to read.
 
 There is no database requirement. A future app can load a file like:
 
@@ -201,7 +239,7 @@ The installer sets this up automatically:
 
 ```text
 upstream -> Danncode10/DannLearn
-origin   -> your own learning repo, if you provided one
+origin   -> your private learning repo
 ```
 
 Your personal learning repo should usually keep these local:
@@ -264,8 +302,8 @@ Use this when you improved generic starter files, such as:
 - `install.sh`
 - `guide.sh`
 
-Do not upstream private subject resources unless you intentionally want them
-public.
+Do not upstream private subject resources. The command excludes `Subjects/`
+by default and opens a draft PR only for selected generic starter improvements.
 
 ## Installed Commands
 

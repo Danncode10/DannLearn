@@ -73,7 +73,7 @@ if [ -e "$TARGET_DIR" ]; then
 fi
 
 echo -e "${CYAN}Cloning DannLearn into ./${PROJECT_SLUG}...${NC}"
-git clone "$STARTER_REPO" "$TARGET_DIR"
+git clone --depth=1 "$STARTER_REPO" "$TARGET_DIR"
 cd "$TARGET_DIR"
 
 UPSTREAM_SHA=$(git rev-parse HEAD)
@@ -84,17 +84,33 @@ fi
 
 echo -e "${GREEN}upstream -> ${STARTER_REPO}${NC}"
 
-ORIGIN_URL=""
-if [ -t 0 ] && [ -r /dev/tty ]; then
-  read -r -p "$(printf "%b" "${BOLD}Optional: paste your new GitHub repo URL for origin${NC} [skip]: ")" ORIGIN_URL < /dev/tty
+ORIGIN_URL="${DANNLEARN_ORIGIN:-}"
+if [ -z "$ORIGIN_URL" ] && command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
+  CREATE_REPO=$(ask "Create a private GitHub repository named ${PROJECT_SLUG} now? (yes/no)" "yes")
+  if [ "$CREATE_REPO" = "yes" ] || [ "$CREATE_REPO" = "y" ]; then
+    gh repo create "$PROJECT_SLUG" --private --source=. --remote=origin
+    ORIGIN_URL=$(git remote get-url origin)
+  fi
 fi
 
-if [ -n "${ORIGIN_URL:-}" ]; then
+if [ -z "$ORIGIN_URL" ] && [ -t 0 ] && [ -r /dev/tty ]; then
+  read -r -p "$(printf "%b" "${BOLD}Paste your private GitHub repo URL for origin${NC} [skip]: ")" ORIGIN_URL < /dev/tty
+fi
+
+if [ -n "${ORIGIN_URL:-}" ] && ! git remote get-url origin >/dev/null 2>&1; then
   git remote add origin "$ORIGIN_URL"
+fi
+
+if git remote get-url origin >/dev/null 2>&1; then
+  ORIGIN_URL=$(git remote get-url origin)
+  if [ "$ORIGIN_URL" = "$STARTER_REPO" ]; then
+    echo -e "${RED}origin must be your personal learning repo, not DannLearn upstream.${NC}"
+    exit 1
+  fi
   echo -e "${GREEN}origin -> ${ORIGIN_URL}${NC}"
 else
-  echo -e "${YELLOW}No origin set yet. Add it later with:${NC}"
-  echo -e "  ${CYAN}git remote add origin <your-github-repo-url>${NC}"
+  echo -e "${YELLOW}No private origin configured. Do not add Subjects/ content until you create one.${NC}"
+  echo -e "  ${CYAN}gh repo create ${PROJECT_SLUG} --private --source=. --remote=origin${NC}"
 fi
 
 NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
@@ -110,6 +126,11 @@ JSON
 
 git add dannlearn.json
 git commit -m "chore: anchor DannLearn starter version" >/dev/null 2>&1 || true
+
+if git remote get-url origin >/dev/null 2>&1; then
+  git push -u origin main
+  echo -e "${GREEN}Private learning repo is ready on origin.${NC}"
+fi
 
 chmod +x guide.sh 2>/dev/null || true
 
@@ -127,5 +148,4 @@ echo ""
 echo -e "${BOLD}Upstream flow:${NC}"
 echo -e "  ${CYAN}/update-dannlearn${NC}     check for new starter updates"
 echo -e "  ${CYAN}/sync-upstream${NC}        pull selected starter updates"
-echo -e "  ${CYAN}/sync-to-upstream${NC}     prepare your generic improvements for DannLearn"
-
+echo -e "  ${CYAN}/sync-to-upstream${NC}     send generic improvements to DannLearn"
