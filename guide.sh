@@ -89,27 +89,29 @@ show_status() {
 }
 
 show_upstream() {
-  cat <<'EOF'
-DannLearn Upstream Flow
+  local origin_url=""
+  local upstream_url=""
 
-Your learning repo keeps:
-  Subjects/
-  private resources
-  generated reviewers/quizzes/flashcards/practice sets
+  origin_url=$(git remote get-url origin 2>/dev/null || true)
+  upstream_url=$(git remote get-url upstream 2>/dev/null || true)
 
-DannLearn upstream receives:
-  .claude/commands/
-  .codex/
-  templates/
-  docs/dannlearn_docs/
-  README/CLAUDE/AGENTS improvements
-  install.sh and guide.sh improvements
+  echo "DannLearn Remote Setup"
+  echo ""
+  echo "origin:   ${origin_url:-missing}"
+  echo "upstream: ${upstream_url:-missing}"
+  echo ""
 
-Commands:
-  /update-dannlearn      Check for starter updates.
-  /sync-upstream         Pull selected upstream files into this repo.
-  /sync-to-upstream      Prepare generic local improvements for a PR back.
-EOF
+  if [ -z "$origin_url" ]; then
+    echo "Action required: create a private personal repository before adding Subjects/ content."
+    echo "Example: gh repo create my-dannlearn --private --source=. --remote=origin"
+  elif [ "$origin_url" = "$upstream_url" ]; then
+    echo "Action required: origin and upstream point to the same repository."
+    echo "origin must be your private learning repository."
+  else
+    echo "Ready: keep Subjects/ and private resources on origin."
+    echo "Use /sync-upstream for selected starter updates."
+    echo "Use /sync-to-upstream for generic starter improvements only."
+  fi
 }
 
 case "${1:-help}" in
