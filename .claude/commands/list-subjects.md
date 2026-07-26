@@ -15,7 +15,7 @@ This is a report-only command. Do not edit files.
 5. For each subject folder, count:
    - raw resources
    - processed resources
-   - reviewer JSON files
+   - reviewer Markdown files
    - quiz JSON files
    - flashcard JSON files
    - practice-set JSON files
@@ -39,4 +39,3 @@ Notes:
 
 - Report only.
 - Do not create missing folders from this command.
-

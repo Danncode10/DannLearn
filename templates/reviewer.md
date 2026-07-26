@@ -1,38 +1,53 @@
 # <Reviewer Title>
 
-## Scope
+## Scope and Sources
 
 - Subject:
 - Topic/resource:
-- Sources:
+- Processed sources:
 
-## Study Order
+## Big Picture
 
-1. 
+<What this topic helps the learner understand.>
 
-## Key Concepts
+## Study Path
 
-### <Concept>
+1. <First major topic>
 
-Definition:
+## <Major Topic>
 
-Why it matters:
+<Central idea and course-grounded explanation.>
 
-Example:
+### Key Ideas
 
-Quick check:
+- <Key idea>
 
-## Common Confusions
+### Learner-Supporting Context
 
-| Confusion | Clarification |
-|---|---|
-|  |  |
+<Clearly labeled analogy, familiar example, or wider-context note.>
 
-## Recall Prompts
+### Check Your Understanding
 
-- 
+- <Retrieval prompt>
+
+## High-Yield Comparisons
+
+| Concept | What to remember | How it differs |
+|---|---|---|
+|  |  |  |
+
+## Visual Search Suggestions
+
+### <Visual topic>
+
+- Learning purpose:
+- Search query: `"<copy-ready descriptive image search query>"`
+- Source note:
+
+## Cumulative Recall Prompts
+
+- <Cumulative retrieval prompt>
 
 ## Source Gaps
 
-- 
-
+- <Known source gap or "None identified.">

@@ -1,5 +1,5 @@
 ---
-description: Improves reviewer clarity and study flow by creating a polished next JSON version.
+description: Improves a Markdown reviewer by creating a clearer, detailed next Markdown version.
 argument-hint: <subject> [reviewer]
 ---
 
@@ -18,12 +18,13 @@ $ARGUMENTS
 1. Read `AGENTS.md`.
 2. Read `CLAUDE.md`.
 3. Find the subject and reviewer topic/version.
-4. Read the latest reviewer JSON unless the user names a specific version.
-5. Read referenced sources enough to preserve factual grounding.
+4. Read the latest reviewer Markdown unless the user names a specific version.
+5. Read the referenced processed sources enough to preserve course grounding.
+   If no processed source is available, stop and recommend `/process-resource`.
 6. Create the next reviewer version:
 
 ```text
-Subjects/<Subject>/reviewers/<topic-slug>/reviewer.vNNN.json
+Subjects/<Subject>/reviewers/<topic-slug>/reviewer.vNNN.md
 ```
 
 7. Improve:
@@ -34,12 +35,15 @@ Subjects/<Subject>/reviewers/<topic-slug>/reviewer.vNNN.json
    - recall prompts
    - study order
    - source gap wording
+   - meaningful visual search suggestions
+   - clear labels for learner-supporting context
 8. Preserve:
    - source references
    - unsupported/uncertain flags
    - learner quote notes
-   - artifact metadata
-9. Do not add unsupported facts.
+   - Markdown provenance and versioning
+9. Do not add unsupported course claims. Keep external learner-supporting context
+   visibly labeled.
 
 ## Output Format
 

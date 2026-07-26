@@ -72,7 +72,7 @@ command prompts are the source of truth.
 
 | Command | Says |
 |---|---|
-| `/make-reviewer <subject> [topic-or-resource] [-quote "..."]` | Creates a JSON-first reviewer from resources, inspired by the ROS2 `make-lesson` teaching structure. |
+| `/make-reviewer <subject> [topic-or-resource] [-quote "..."]` | Creates a detailed Markdown reviewer from processed resources, with labeled learner-supporting context and visual search suggestions. |
 | `/reviewer-update <subject> [reviewer]` | Creates the next reviewer version when resources changed. |
 | `/reviewer-check <subject> [reviewer]` | Report-only reviewer QA: coverage, grounding, citations, ambiguity, and gaps. |
 | `/reviewer-polish <subject> [reviewer]` | Creates a polished next reviewer version with clearer study flow. |
@@ -133,7 +133,7 @@ graph TD
 ## Notes
 
 - `Subjects/` is local/private by default.
-- Generated reviewers, quizzes, flashcards, and practice sets are JSON-first.
+- Reviewers are Markdown; quizzes, flashcards, and practice sets are JSON.
 - Versioned artifacts should create `v001`, `v002`, `v003`, and so on instead of overwriting.
 - `Subjects/` content is not upstreamed by default.
 - `/help-dannlearn`, `/list-subjects`, `/subject-status`, and `/reviewer-check` are report-only unless their command files explicitly say otherwise.

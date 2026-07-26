@@ -25,8 +25,9 @@ This is a report-only command. Do not edit files.
    - If no reviewer is provided, check the latest reviewer for each topic.
    - If a topic is provided, check its latest version unless the user names a
      specific file.
-6. Read the reviewer JSON.
-7. Read referenced sources where available.
+6. Read the reviewer Markdown.
+7. Read the referenced processed sources. If they are missing, report the
+   reviewer as `BLOCKED BY SOURCES`.
 8. Compare reviewer content against sources.
 9. Check:
    - unsupported claims
@@ -36,7 +37,10 @@ This is a report-only command. Do not edit files.
    - repeated concepts
    - passive summary sections that need recall prompts
    - Mermaid syntax risk, if diagrams are present
-   - JSON shape consistency with `docs/dannlearn_docs/artifact-json.md`
+   - whether learner-supporting context is visibly labeled and remains accurate
+   - whether visual search suggestions have a learning purpose and a usable
+     copy-ready search query
+   - Markdown structure and versioned `.md` naming
 
 ## Output Format
 
@@ -65,6 +69,6 @@ READY / NEEDS FIXES / BLOCKED BY SOURCES
 ## Safety Rules
 
 - Report only.
-- Do not modify reviewer JSON or sources.
-- Do not treat unreferenced facts as valid unless sources support them.
-
+- Do not modify reviewer Markdown or sources.
+- Flag any course claim that is not supported by a processed source.
+- Treat unlabeled external context as a clarity and provenance issue.

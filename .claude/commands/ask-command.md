@@ -31,7 +31,8 @@ The prompt must:
 - Use imperative voice directed at Claude.
 - Reference the correct slash command by name.
 - Include concrete subject/topic/resource details inferred from the user's goal.
-- Mention JSON-first output when the target command creates study artifacts.
+- Mention Markdown output for reviewers and JSON output for quizzes,
+  flashcards, and practice sets.
 - Be detailed enough that Claude can start without clarification unless the
   subject/resource is genuinely ambiguous.
 
@@ -53,7 +54,6 @@ If no existing command covers the goal well, output:
 **Prompt:**
 
 ```text
-Run /make-command "<one-sentence description of the new command needed>". Make the command fit DannLearn's JSON-first study artifact model, preserve source provenance, and define whether it is report-only or allowed to edit files.
+Run /make-command "<one-sentence description of the new command needed>". Make the command fit DannLearn's Markdown-reviewer and JSON-practice-artifact model, preserve source provenance, and define whether it is report-only or allowed to edit files.
 ```
 ---
-

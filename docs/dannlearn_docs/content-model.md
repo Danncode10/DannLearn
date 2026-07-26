@@ -21,12 +21,13 @@ Subjects/<SubjectName>/
 
 1. Add original material to `resources/raw/`.
 2. Produce cleaned, grounded extraction in `resources/processed/`.
-3. Generate reviewers from raw and processed resources.
+3. Generate Markdown reviewers from processed resources, with clearly labeled
+   learner-supporting context where useful.
 4. Generate quizzes and flashcards from resources and reviewers.
 5. Run coverage and factual checks before treating artifacts as final.
 
-Generated reviewers, quizzes, flashcards, and practice sets should use the JSON
-artifact contract in `docs/dannlearn_docs/artifact-json.md`.
+Reviewers are versioned Markdown artifacts. Quizzes, flashcards, and practice
+sets use the JSON contract in `docs/dannlearn_docs/artifact-json.md`.
 
 ## Provenance
 

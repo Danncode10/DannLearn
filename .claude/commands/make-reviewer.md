@@ -1,16 +1,21 @@
 ---
-description: Creates a Markdown-first reviewer from subject resources, with optional -quote notes and versioned naming.
+description: Creates a detailed Markdown reviewer from processed subject resources, with clearly labeled learner-supporting context and visual search suggestions.
 argument-hint: <subject> [topic-or-resource] [-quote "..."]
 ---
 
 # /make-reviewer
 
-Create a grounded reviewer for a subject topic or resource.
+Create a detailed, Markdown-first reviewer that teaches a topic, not merely
+summarizes it.
 
-This command is inspired by the ROS2 tutorial repo's `/make-lesson` pattern:
-match the learning unit, read existing source/plan material, create a predictable
-artifact, teach patiently, add diagrams only when useful, and verify that the
-result is studyable.
+The reviewer has two clearly separated layers:
+
+- **Course-grounded content**: facts, terminology, processes, formulas, and
+  claims supported by the selected processed resource.
+- **Learner-supporting context**: clearly labeled analogies, familiar examples,
+  comparisons, and carefully chosen extra context that make the course content
+  easier to understand. Never present this layer as though it came from the
+  learner's resource.
 
 User argument:
 
@@ -26,110 +31,114 @@ Parse:
 <subject> [topic-or-resource] [-quote "<learner wording or note>"]
 ```
 
-Examples:
-
-```text
-Biology cell membrane -quote "The membrane is like a selective border, not a wall."
-```
-
-```text
-"Computer Networks" tcp-ip
-```
-
-If `-quote` is present, preserve the quote in `quote_notes` and use it as a
-learner-friendly note where relevant. Lightly clean grammar only when it
-improves clarity. Do not change the learner's meaning.
+If `-quote` is present, preserve the learner's meaning and use it where it is
+helpful. Lightly clean grammar only when clarity improves.
 
 ## Procedure
 
-1. Read `AGENTS.md`.
-2. Read `CLAUDE.md`.
-3. Read `docs/dannlearn_docs/artifact-json.md`.
-4. Find the best matching subject under `Subjects/`.
-5. Read `Subjects/<Subject>/index.md` if present.
-6. Find relevant source material in this order:
-   - matching files in `resources/processed/`
-   - matching files in `resources/raw/`
-   - existing notes in `notes/`
-   - existing reviewer versions if the user is extending a topic
-7. If there is no processed resource but raw resources exist, tell the user the
-   best next command is `/process-resource <subject> <resource>`. Continue only
-   if the raw resource is readable enough to ground the reviewer.
-8. Determine a `topic-slug`:
-   - Use the topic/resource argument when provided.
-   - Otherwise infer from the strongest matching resource title.
-   - Use lowercase kebab-case.
-9. Create the output folder:
+1. Read `AGENTS.md`, `CLAUDE.md`, and `docs/dannlearn_docs/artifact-json.md`.
+2. Find the best matching subject under `Subjects/` and read its `index.md`.
+3. Find processed resources that match the requested topic or resource.
+4. Stop before creating files if the source preflight fails:
 
-```text
-Subjects/<Subject>/reviewers/<topic-slug>/
-```
+   ```text
+   ERROR: No resources found for "<Subject>".
+   Expected: Subjects/<Subject>/resources/raw/ and resources/processed/.
+   Action: Add a source resource, then run /process-resource <subject> <resource>.
+   ```
 
-10. Create the next versioned Markdown file:
+   ```text
+   ERROR: No processed resource found for "<topic-or-resource>" in "<Subject>".
+   Raw resource(s) found: <list, or "none">.
+   Action: Run /process-resource <subject> <resource> before /make-reviewer.
+   ```
 
-```text
-reviewer.v001.md
-reviewer.v002.md
-reviewer.v003.md
-```
+   List available processed resources when the requested topic does not match
+   any of them. Do not create a reviewer from raw resources or notes alone.
+5. Read the selected processed resource fully. Read its associated raw resource
+   only when needed to resolve a source label, figure, or extraction note.
+6. Determine a lowercase kebab-case `topic-slug` from the requested topic or
+   strongest matching processed resource title.
+7. Create the next versioned Markdown reviewer. Never overwrite an old version:
 
-Never overwrite an existing version.
+   ```text
+   Subjects/<Subject>/reviewers/<topic-slug>/reviewer.v001.md
+   Subjects/<Subject>/reviewers/<topic-slug>/reviewer.v002.md
+   ```
 
-## Reviewer Markdown Requirements
+## Reviewer Design
 
-Use `templates/reviewer.md` as the shape. Include:
+Use `templates/reviewer.md` as a starting shape, adapting it to the topic.
+There is no length cap: use as much space as improves understanding, comparison,
+and retrieval practice. Avoid padding or repeating the same idea.
 
-- Title (h1)
-- Scope (subject, topic, sources)
-- Study Order
-- Key Concepts (for each concept: definition, why it matters, example, quick check)
-- Common Confusions (table format)
-- Recall Prompts
-- Source Gaps
+The reviewer must include:
 
-## Teaching And Study Style
+1. **Title and provenance**
+   - Title, subject, topic, processed sources, and a short Big Picture.
+2. **Study Path**
+   - A concise, unit-level reading order.
+3. **Main Review Sections**
+   - Organize by learning objectives or natural conceptual units, not one rigid
+     mini-essay per vocabulary word.
+   - Start each section with its central idea.
+   - Use prose for explanations, bullets for lists, tables for comparable
+     concepts, and formula blocks for calculations.
+   - Explain difficult terms before depending on them.
+4. **Check Your Understanding**
+   - Add 2-5 retrieval prompts after each major section. Mix direct recall,
+     comparison, and simple application.
+5. **High-Yield Comparisons**
+   - Include when similar concepts are likely to be confused.
+6. **Visual Search Suggestions**
+   - Include 3-6 only when visuals would materially help.
+   - Each suggestion must name its learning purpose and give one descriptive,
+     copy-ready internet image-search query. Prefer diagrams, labeled figures,
+     or authentic examples over decorative imagery.
+   - State when a source figure is the best visual to use instead.
+7. **Cumulative Recall Prompts** and **Source Gaps**.
 
-Write like a patient teacher helping someone review.
+## Learner-Supporting Context
 
-Requirements:
+Use learner-supporting context to make the reviewer more teachable. It may add:
 
-- Use beginner-friendly explanations without talking down.
-- Explain important vocabulary before relying on it.
-- Prefer conceptual order over source-file order when that improves learning.
-- Include common confusions and what to remember instead.
-- Include quick recall prompts.
-- Include "source gaps" when resources are incomplete.
-- If a topic goes beyond the available source, mark it as future/unsupported
-  instead of expanding it.
-- Use Mermaid diagrams only when they make relationships easier to see and can
-  be represented safely.
+- a plain-language analogy;
+- a familiar real-world example;
+- a brief comparison that clarifies a distinction;
+- a wider-context note that explains why the concept is useful.
 
-## Mermaid Verification Loop
+Rules:
 
-If the reviewer Markdown includes Mermaid:
+- Label each addition as `Learner-supporting context:` or place it in a clearly
+  labeled callout. Do not imply it was stated in the course resource.
+- Keep it accurate, conventional, and directly relevant.
+- Do not add niche facts, numerical claims, standards, configuration steps, or
+  exam-specific claims unless they are supported by a cited external source.
+- Do not make quizzes, flashcards, or recall answers depend on an external
+  addition unless that artifact explicitly labels it as optional enrichment.
 
-1. Check every Mermaid block for GitHub/VS Code-safe syntax.
-2. Prefer `flowchart LR`, `flowchart TD`, or `sequenceDiagram`.
-3. Use simple ASCII node IDs.
-4. Quote labels with spaces or punctuation.
-5. Add a short "How to read this" explanation.
-6. If the diagram seems risky, replace it with a plain Markdown list or table.
+## Diagrams And Images
+
+Use Mermaid only when it accurately represents a relationship in the processed
+source and makes that relationship easier to understand. Verify GitHub/VS Code
+safe syntax and add a short "How to read this" note. Otherwise, provide a
+Visual Search Suggestion rather than inventing a diagram.
+
+## Quality Check
+
+Before writing, confirm that the reviewer is detailed without being repetitive,
+groups concepts into meaningful sections, distinguishes source-grounded facts
+from learner-supporting context, includes active retrieval practice, and has no
+unsupported course claims.
 
 ## Completion Response
 
-Report:
-
-- subject
-- topic slug
-- sources used
-- reviewer Markdown path
-- whether `-quote` was included
-- assumptions and source gaps
-- suggested next commands: `/make-quiz` and `/make-flashcards`
+Report the subject, topic slug, processed sources, reviewer path, whether a
+learner quote was included, the number of visual search suggestions, clearly
+labeled enrichment used, source gaps, and suggested next commands.
 
 ## Safety Rules
 
-- Do not invent unsupported facts.
-- Do not overwrite existing reviewer versions.
-- Do not delete or edit resources.
+- Do not overwrite reviewer versions or edit resources.
+- Keep generated reviewers in the matching subject folder.
 - Treat raw resources and notes as private/local.

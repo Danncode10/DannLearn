@@ -14,7 +14,7 @@ plain Markdown so they can be reviewed, edited, and eventually upstreamed.
 | `/list-subjects` | Report-only overview of subjects. |
 | `/subject-status [subject]` | Report-only subject status and gap report. |
 | `/process-resource <subject> <resource>` | Converts raw resources into processed Markdown notes. |
-| `/make-reviewer <subject> [topic-or-resource] [-quote "..."]` | Creates a JSON-first reviewer. |
+| `/make-reviewer <subject> [topic-or-resource] [-quote "..."]` | Creates a detailed Markdown reviewer from processed resources. |
 | `/reviewer-update <subject> [reviewer]` | Creates an updated reviewer version. |
 | `/reviewer-check <subject> [reviewer]` | Report-only reviewer QA. |
 | `/reviewer-polish <subject> [reviewer]` | Creates a clearer polished reviewer version. |
@@ -37,4 +37,4 @@ Each command should define:
 - Preflight checks.
 - Output format.
 - Safety rules around private resources and upstream sync.
-- JSON-first behavior when creating generated study artifacts.
+- Markdown for reviewers; JSON for quizzes, flashcards, and practice sets.

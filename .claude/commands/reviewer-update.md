@@ -21,16 +21,17 @@ $ARGUMENTS
 4. Find the subject folder.
 5. Find the reviewer topic under `Subjects/<Subject>/reviewers/`.
    - If no reviewer exists, recommend `/make-reviewer <subject> <topic>`.
-6. Read the latest reviewer JSON version.
-7. Read source files referenced by the latest reviewer.
+6. Read the latest reviewer Markdown version.
+7. Read processed source files referenced by the latest reviewer.
+   If those sources are missing or no longer processed, stop and recommend
+   `/process-resource` before updating.
 8. Check for newer or additional files in:
    - `resources/processed/`
-   - `resources/raw/`
    - `notes/`
 9. Create the next version:
 
 ```text
-Subjects/<Subject>/reviewers/<topic-slug>/reviewer.vNNN.json
+Subjects/<Subject>/reviewers/<topic-slug>/reviewer.vNNN.md
 ```
 
 10. Preserve useful structure from the previous reviewer, but update:
@@ -39,7 +40,8 @@ Subjects/<Subject>/reviewers/<topic-slug>/reviewer.vNNN.json
    - key concepts
    - source gaps
    - quote notes
-   - simple source fields
+   - visual search suggestions
+   - clearly labeled learner-supporting context
 
 11. Do not mutate older versions.
 
@@ -59,4 +61,5 @@ Report:
 
 - Never overwrite older reviewer versions.
 - Do not delete stale versions.
-- Do not invent facts to fill gaps.
+- Do not invent course facts to fill gaps. Keep learner-supporting context
+  visibly labeled and separate from source-grounded claims.

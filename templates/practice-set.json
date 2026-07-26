@@ -5,7 +5,7 @@
   "version": "v001",
   "created_at": "<ISO timestamp>",
   "sources": [
-    "Subjects/<SubjectName>/reviewers/<topic-slug>/reviewer.v001.json",
+    "Subjects/<SubjectName>/reviewers/<topic-slug>/reviewer.v001.md",
     "Subjects/<SubjectName>/quizzes/<topic-slug>/quiz.v001.json",
     "Subjects/<SubjectName>/flashcards/<topic-slug>/flashcards.v001.json"
   ],
@@ -22,4 +22,3 @@
     }
   ]
 }
-

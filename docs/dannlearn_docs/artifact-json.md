@@ -11,7 +11,6 @@ files in the repo.
 Use topic folders and versioned files:
 
 ```text
-Subjects/<Subject>/reviewers/<topic-slug>/reviewer.v001.json
 Subjects/<Subject>/quizzes/<topic-slug>/quiz.v001.json
 Subjects/<Subject>/flashcards/<topic-slug>/flashcards.v001.json
 Subjects/<Subject>/practice-sets/<topic-slug>/practice-set.v001.json
@@ -114,41 +113,16 @@ If a specific item needs more detail, add `source` to that question/card:
 Keep it practical. The goal is not a perfect schema. The goal is a clean file
 that humans and a future UI can both understand.
 
-## Simple Reviewer Shape
+## Reviewers
 
-```json
-{
-  "type": "reviewer",
-  "subject": "Biology",
-  "topic": "chapter-1",
-  "version": "v001",
-  "sources": [
-    "Subjects/Biology/resources/processed/chapter-1.processed.md"
-  ],
-  "title": "Chapter 1 Reviewer",
-  "sections": [
-    {
-      "heading": "Cell Membrane",
-      "summary": "The membrane controls what enters and leaves the cell.",
-      "key_concepts": [
-        {
-          "term": "Selective permeability",
-          "meaning": "Only some substances can pass through.",
-          "example": "Small molecules may pass more easily than large ones.",
-          "source": "Subjects/Biology/resources/processed/chapter-1.processed.md"
-        }
-      ],
-      "quick_checks": [
-        {
-          "question": "What does selective permeability mean?",
-          "answer": "Only some substances can pass through."
-        }
-      ]
-    }
-  ],
-  "quote_notes": []
-}
+Reviewers are versioned Markdown files, not JSON artifacts:
+
+```text
+Subjects/<Subject>/reviewers/<topic-slug>/reviewer.v001.md
 ```
+
+Their required study structure is defined in `templates/reviewer.md` and
+`.claude/commands/make-reviewer.md`.
 
 ## Simple Practice Set Shape
 

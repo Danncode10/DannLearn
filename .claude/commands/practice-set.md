@@ -28,15 +28,17 @@ $ARGUMENTS
    - latest flashcard versions
    - latest reviewer version
    - processed resources
-7. If the topic is missing, infer it from available artifacts or ask the user to
+7. If no processed resource exists and the topic has no source-traceable quiz,
+   flashcards, or reviewer, stop and recommend `/process-resource`.
+8. If the topic is missing, infer it from available artifacts or ask the user to
    choose.
-8. Create:
+9. Create:
 
 ```text
 Subjects/<Subject>/practice-sets/<topic-slug>/
 ```
 
-9. Create the next version:
+10. Create the next version:
 
 ```text
 practice-set.v001.json

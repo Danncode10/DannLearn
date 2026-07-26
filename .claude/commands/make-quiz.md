@@ -20,21 +20,26 @@ $ARGUMENTS
 3. Read `docs/dannlearn_docs/artifact-json.md`.
 4. Parse `$ARGUMENTS` as `<subject> [topic]`.
 5. Find the best matching subject under `Subjects/`.
-6. Find relevant source material in this order:
-   - latest reviewer JSON for the topic
-   - processed resources matching the topic
-   - raw resources if readable
-   - subject notes
-7. If no topic is provided, infer one from the latest reviewer or strongest
+6. Find processed resources matching the topic, then read the latest reviewer
+   Markdown only as a study-structure aid. Do not use raw resources or notes as
+   the sole factual basis for a quiz.
+7. If no matching processed resource exists, stop with:
+
+   ```text
+   ERROR: No processed resource found for "<topic>" in "<Subject>".
+   Action: Run /process-resource <subject> <resource> before /make-quiz.
+   ```
+
+8. If no topic is provided, infer one from the latest reviewer or strongest
    processed resource. If several topics are plausible, ask the user to choose.
-8. Create a topic slug in lowercase kebab-case.
-9. Create:
+9. Create a topic slug in lowercase kebab-case.
+10. Create:
 
 ```text
 Subjects/<Subject>/quizzes/<topic-slug>/
 ```
 
-10. Create the next versioned quiz JSON:
+11. Create the next versioned quiz JSON:
 
 ```text
 quiz.v001.json
@@ -72,6 +77,8 @@ Each question must include:
 
 - The quiz should test understanding, not trivia.
 - Every answer must be supportable from sources.
+- Do not test learner-supporting context from a reviewer unless it is explicitly
+  marked as optional enrichment and its external source is included.
 - Keep the JSON simple enough for a future UI to read directly.
 - If the source is weak, create fewer questions and mark source gaps.
 - Do not duplicate questions from prior quiz versions unless the repetition is

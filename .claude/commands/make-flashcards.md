@@ -20,19 +20,24 @@ $ARGUMENTS
 3. Read `docs/dannlearn_docs/artifact-json.md`.
 4. Parse `$ARGUMENTS` as `<subject> [topic]`.
 5. Find the best matching subject under `Subjects/`.
-6. Find relevant source material in this order:
-   - latest reviewer JSON for the topic
-   - processed resources matching the topic
-   - raw resources if readable
-   - notes
-7. Determine the topic slug.
-8. Create:
+6. Find processed resources matching the topic, then read the latest reviewer
+   Markdown only as a study-structure aid. Do not use raw resources or notes as
+   the sole factual basis for cards.
+7. If no matching processed resource exists, stop with:
+
+   ```text
+   ERROR: No processed resource found for "<topic>" in "<Subject>".
+   Action: Run /process-resource <subject> <resource> before /make-flashcards.
+   ```
+
+8. Determine the topic slug.
+9. Create:
 
 ```text
 Subjects/<Subject>/flashcards/<topic-slug>/
 ```
 
-9. Create the next versioned flashcard JSON:
+10. Create the next versioned flashcard JSON:
 
 ```text
 flashcards.v001.json
@@ -71,6 +76,8 @@ Each card must include:
 - Keep the JSON simple enough for a future UI to read directly.
 - Mark unsupported or inferred cards in a plain `note` field instead of hiding
   uncertainty.
+- Do not create cards from learner-supporting context unless they are explicitly
+  optional enrichment and include their external source.
 - Include cloze cards only when cloze deletion is genuinely useful.
 
 ## Completion Response

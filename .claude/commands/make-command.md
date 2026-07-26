@@ -44,7 +44,7 @@ Check for:
 - Duplicate scope.
 - Overlapping responsibility.
 - Conflict with `CLAUDE.md` learning guardrails.
-- Conflict with JSON-first artifact rules.
+- Conflict with Markdown-reviewer and JSON-practice-artifact rules.
 - Any risk of overwriting private `Subjects/` content.
 
 If a command already fits, recommend using or editing it instead of creating a
@@ -86,7 +86,8 @@ $ARGUMENTS
 Command rules:
 
 - State whether the command is report-only.
-- If the command writes generated study artifacts, require JSON-first output.
+- If the command writes reviewers, require versioned Markdown output. If it
+  writes quizzes, flashcards, or practice sets, require versioned JSON output.
 - If the command reads resources, require source provenance.
 - If the command can overwrite files, require creating a new version instead.
 - If it touches `Subjects/`, treat content as local/private.
